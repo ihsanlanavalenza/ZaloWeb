@@ -1,14 +1,14 @@
 <template>
-  <section id="testimonials" class="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+  <section id="testimonials" class="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
     <div class="absolute inset-0 grain opacity-20"></div>
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Testimoni</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mt-3 mb-4">
+        <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">Testimoni</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
           Apa Kata <span class="gradient-text">Klien Kami?</span>
         </h2>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-gray-600 dark:text-gray-300">
           Kepuasan klien adalah prioritas utama kami
         </p>
       </div>
@@ -38,8 +38,8 @@
               {{ testimonial.name.charAt(0) }}
             </div>
             <div>
-              <div class="font-bold text-gray-900">{{ testimonial.name }}</div>
-              <div class="text-sm text-gray-600">{{ testimonial.role }}</div>
+              <div class="font-bold text-gray-900 dark:text-white">{{ testimonial.name }}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">{{ testimonial.role }}</div>
             </div>
           </div>
 

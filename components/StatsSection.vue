@@ -1,5 +1,5 @@
 <template>
-  <section class="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-50 relative overflow-hidden">
+  <section class="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
     <!-- Background Effects -->
     <div class="absolute inset-0 grain opacity-50"></div>
     
@@ -9,7 +9,7 @@
         <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">
           Dipercaya Berbagai Bisnis di Indonesia
         </h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+        <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
           Startup yang berkembang pesat dengan tim profesional berpengalaman, siap membantu kesuksesan digital bisnis Anda
         </p>
       </div>
@@ -24,8 +24,8 @@
             </svg>
           </div>
           <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">180+</div>
-          <div class="text-gray-600 font-medium">Projek Selesai</div>
-          <div class="text-xs text-gray-500 mt-1">Sejak 2022</div>
+          <div class="text-gray-600 dark:text-gray-300 font-medium">Projek Selesai</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Sejak 2022</div>
         </div>
 
         <!-- Stat 2 -->
@@ -48,8 +48,8 @@
             </svg>
           </div>
           <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">99.8%</div>
-          <div class="text-gray-600 font-medium">Uptime Server</div>
-          <div class="text-xs text-gray-500 mt-1">Hosting Reliable</div>
+          <div class="text-gray-600 dark:text-gray-300 font-medium">Uptime Server</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Hosting Reliable</div>
         </div>
 
         <!-- Stat 4 -->
@@ -60,8 +60,8 @@
             </svg>
           </div>
           <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">4.8/5</div>
-          <div class="text-gray-600 font-medium">Rating Klien</div>
-          <div class="text-xs text-gray-500 mt-1">Google Reviews</div>
+          <div class="text-gray-600 dark:text-gray-300 font-medium">Rating Klien</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Google Reviews</div>
         </div>
       </div>
 
@@ -75,8 +75,8 @@
               </svg>
             </div>
             <div>
-              <div class="font-bold text-gray-900">Secure Payment</div>
-              <div class="text-sm text-gray-600">Pembayaran Aman</div>
+              <div class="font-bold text-gray-900 dark:text-white">Secure Payment</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Pembayaran Aman</div>
             </div>
           </div>
 
@@ -87,8 +87,8 @@
               </svg>
             </div>
             <div>
-              <div class="font-bold text-gray-900">24/7 Support</div>
-              <div class="text-sm text-gray-600">Siap Membantu</div>
+              <div class="font-bold text-gray-900 dark:text-white">24/7 Support</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">Siap Membantu</div>
             </div>
           </div>
 

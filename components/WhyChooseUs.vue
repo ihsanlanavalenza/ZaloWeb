@@ -1,14 +1,14 @@
 <template>
-  <section id="why-choose-us" class="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+  <section id="why-choose-us" class="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
     <div class="absolute inset-0 grain opacity-20"></div>
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Keunggulan Kami</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mt-3 mb-4">
+        <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">Keunggulan Kami</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
           Mengapa Memilih <span class="gradient-text">ZaloWeb?</span>
         </h2>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-gray-600 dark:text-gray-300">
           Kami memberikan solusi terbaik dengan komitmen penuh untuk kesuksesan bisnis Anda
         </p>
       </div>
@@ -32,7 +32,7 @@
               {{ point.title }}
             </h3>
             
-            <p class="text-gray-600 leading-relaxed mb-4">
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
               {{ point.description }}
             </p>
 
@@ -41,7 +41,7 @@
               <li 
                 v-for="(feature, idx) in point.features" 
                 :key="idx"
-                class="flex items-start gap-2 text-sm text-gray-700"
+                class="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
               >
                 <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -57,7 +57,7 @@
       </div>
 
       <!-- Statistics -->
-      <div class="bg-gradient-to-br from-blue-600 to-purple-700 rounded-3xl p-8 md:p-12">
+      <div class="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900 rounded-3xl p-8 md:p-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div class="text-center">
             <div class="text-4xl md:text-5xl font-bold text-white mb-2" data-count="150">150+</div>

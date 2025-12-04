@@ -1,14 +1,14 @@
 <template>
-  <section id="faq" class="py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+  <section id="faq" class="py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
     <div class="absolute inset-0 grain opacity-20"></div>
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">FAQ</span>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mt-3 mb-4">
+        <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">FAQ</span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
           Pertanyaan yang <span class="gradient-text">Sering Ditanyakan</span>
         </h2>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-gray-600 dark:text-gray-300">
           Temukan jawaban untuk pertanyaan umum tentang layanan kami
         </p>
       </div>
@@ -37,7 +37,7 @@
           
           <div 
             v-show="faq.isOpen"
-            class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4"
+            class="px-6 pb-6 text-gray-600 dark:text-gray-300 leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
           >
             {{ faq.answer }}
           </div>
@@ -46,7 +46,7 @@
 
       <!-- Still Have Questions CTA -->
       <div class="text-center mt-12">
-        <p class="text-gray-600 mb-4">Masih ada pertanyaan lain?</p>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Masih ada pertanyaan lain?</p>
         <a 
           href="#contact" 
           class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"

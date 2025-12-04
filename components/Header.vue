@@ -108,10 +108,10 @@ const isDark = ref(false)
 
 const navItems = [
   { name: 'Home', href: '#home' },
-  { name: 'Projects', href: '#portfolio' },
-  { name: 'Blog', href: '#why-choose-us' },
-  { name: 'Speaking', href: '#faq' },
-  { name: 'About', href: '#contact' },
+  { name: 'Portfolio', href: '#portfolio' },
+  { name: 'Why Choose Us', href: '#why-choose-us' },
+  { name: 'FAQ', href: '#faq' },
+  { name: 'Contact', href: '#contact' },
 ]
 
 const toggleDarkMode = () => {

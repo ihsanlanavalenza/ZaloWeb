@@ -29,18 +29,18 @@
       >
         <div 
           v-if="showTooltip"
-          class="absolute right-20 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg whitespace-nowrap shadow-xl"
+          class="absolute right-20 top-1/2 -translate-y-1/2 bg-gray-900 dark:bg-gray-800 text-white px-4 py-2 rounded-lg whitespace-nowrap shadow-xl"
         >
           <div class="text-sm font-semibold">Chat dengan Kami</div>
-          <div class="text-xs text-gray-300">Konsultasi Gratis!</div>
+          <div class="text-xs text-gray-300 dark:text-gray-400">Konsultasi Gratis!</div>
           <!-- Arrow -->
-          <div class="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-gray-900"></div>
+          <div class="absolute top-1/2 -right-2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-l-8 border-l-gray-900 dark:border-l-gray-800"></div>
         </div>
       </transition>
     </a>
 
     <!-- Notification Badge (Optional - for unread messages effect) -->
-    <div class="fixed bottom-[88px] right-[88px] z-50 w-5 h-5 bg-red-500 border-2 border-white rounded-full flex items-center justify-center pointer-events-none">
+    <div class="fixed bottom-[88px] right-[88px] z-50 w-5 h-5 bg-red-500 border-2 border-white dark:border-gray-900 rounded-full flex items-center justify-center pointer-events-none">
       <span class="text-white text-xs font-bold">1</span>
     </div>
   </div>

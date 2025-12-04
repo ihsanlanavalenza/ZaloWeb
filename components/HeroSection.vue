@@ -1,6 +1,6 @@
 <template>
   <section id="home" class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden grain">
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div class="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
       <div class="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
       <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
@@ -9,19 +9,19 @@
     <div class="container mx-auto px-4 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="space-y-8">
-          <div class="inline-flex items-center gap-2 glass-card px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg text-blue-700 animate-float">
+          <div class="inline-flex items-center gap-2 glass-card px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg text-blue-700 dark:text-blue-400 animate-float">
             <svg class="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
             </svg>
             Transformasi Digital Dimulai Di Sini
           </div>
           
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
             Wujudkan Impian 
             <span class="gradient-text block mt-2 text-shadow">Website Profesional Anda</span>
           </h1>
           
-          <p class="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl">
+          <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
             Kami hadir untuk membantu bisnis Anda berkembang dengan solusi website yang modern, 
             responsif, dan SEO-friendly. Dari konsultasi gratis hingga maintenance berkelanjutan.
           </p>
@@ -34,8 +34,8 @@
                 </svg>
               </div>
               <div>
-                <div class="font-bold text-gray-900">Konsultasi Gratis</div>
-                <div class="text-sm text-gray-600">Tanpa biaya apapun</div>
+                <div class="font-bold text-gray-900 dark:text-white">Konsultasi Gratis</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Tanpa biaya apapun</div>
               </div>
             </div>
 
@@ -46,8 +46,8 @@
                 </svg>
               </div>
               <div>
-                <div class="font-bold text-gray-900">Pengerjaan Cepat</div>
-                <div class="text-sm text-gray-600">Selesai tepat waktu</div>
+                <div class="font-bold text-gray-900 dark:text-white">Pengerjaan Cepat</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Selesai tepat waktu</div>
               </div>
             </div>
 
@@ -58,8 +58,8 @@
                 </svg>
               </div>
               <div>
-                <div class="font-bold text-gray-900">Harga Terjangkau</div>
-                <div class="text-sm text-gray-600">Sesuai budget Anda</div>
+                <div class="font-bold text-gray-900 dark:text-white">Harga Terjangkau</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Sesuai budget Anda</div>
               </div>
             </div>
 
@@ -70,21 +70,21 @@
                 </svg>
               </div>
               <div>
-                <div class="font-bold text-gray-900">Support 24/7</div>
-                <div class="text-sm text-gray-600">Siap membantu Anda</div>
+                <div class="font-bold text-gray-900 dark:text-white">Support 24/7</div>
+                <div class="text-sm text-gray-600 dark:text-gray-400">Siap membantu Anda</div>
               </div>
             </div>
           </div>
           
-          <div class="flex flex-col sm:flex-row gap-4 pt-4">
-            <a href="#portfolio" class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-[length:200%] hover:bg-right text-white px-8 py-4 rounded-full font-semibold transition-all duration-500 shadow-lg shadow-blue-500/50 hover:shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105 flex items-center justify-center gap-2 shine-effect">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex flex-col sm:flex-row gap-4 pt-8">
+            <a href="#portfolio" class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-[length:200%] hover:bg-right text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-500 shadow-xl shadow-blue-500/50 hover:shadow-2xl hover:shadow-purple-500/60 transform hover:scale-105 flex items-center justify-center gap-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
               Lihat Portfolio
             </a>
-            <a href="#contact" class="group relative px-8 py-4 rounded-full font-semibold text-blue-600 bg-white/60 backdrop-blur-md border-2 border-blue-400/50 hover:bg-white/80 hover:border-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="#contact" class="group relative px-10 py-4 rounded-full font-bold text-lg text-blue-600 dark:text-blue-400 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-2 border-blue-400/50 dark:border-blue-500/50 hover:bg-white dark:hover:bg-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 flex items-center justify-center gap-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
               </svg>
               Konsultasi Gratis

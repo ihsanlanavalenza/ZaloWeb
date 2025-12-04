@@ -1,7 +1,7 @@
 <template>
   <section id="contact" class="py-16 md:py-24 relative overflow-hidden">
     <!-- Gradient Background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 dark:from-blue-900 dark:via-purple-900 dark:to-blue-950"></div>
     
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 opacity-20">
@@ -29,33 +29,33 @@
         </div>
 
         <!-- Contact Form -->
-        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12">
           <form @submit.prevent="submitForm" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Name -->
               <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Nama Lengkap *
                 </label>
                 <input 
                   v-model="formData.name"
                   type="text" 
                   required
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800 outline-none transition-all"
                   placeholder="Masukkan nama Anda"
                 >
               </div>
 
               <!-- Phone -->
               <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                   Nomor WhatsApp *
                 </label>
                 <input 
                   v-model="formData.phone"
                   type="tel" 
                   required
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                  class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800 outline-none transition-all"
                   placeholder="08123456789"
                 >
               </div>
@@ -63,26 +63,26 @@
 
             <!-- Email -->
             <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 Email *
               </label>
               <input 
                 v-model="formData.email"
                 type="email" 
                 required
-                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800 outline-none transition-all"
                 placeholder="email@example.com"
               >
             </div>
 
             <!-- Package Selection -->
             <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 Paket yang Diminati
               </label>
               <select 
                 v-model="formData.package"
-                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all bg-white"
+                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800 outline-none transition-all">
               >
                 <option value="">Pilih Paket</option>
                 <option value="standard">Standard - Rp 2,5 Juta</option>
@@ -94,14 +94,14 @@
 
             <!-- Message -->
             <div>
-              <label class="block text-sm font-semibold text-gray-700 mb-2">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 Ceritakan Kebutuhan Anda *
               </label>
               <textarea 
                 v-model="formData.message"
                 required
                 rows="5"
-                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all resize-none"
+                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-800 outline-none transition-all resize-none dark:placeholder:text-gray-400"
                 placeholder="Jelaskan tentang bisnis Anda dan website seperti apa yang Anda inginkan..."
               ></textarea>
             </div>

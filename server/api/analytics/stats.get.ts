@@ -1,3 +1,5 @@
+import { defineEventHandler } from 'h3'
+
 // Dummy stats untuk demo (gunakan database real untuk production)
 export default defineEventHandler(() => {
   return {

@@ -1,11 +1,22 @@
+import { defineEventHandler, readBody, getRequestIP, getRequestHeader } from 'h3'
+
+interface VisitorData {
+  id: number
+  page: string
+  timestamp: string
+  userAgent: string
+  ip: string | undefined
+  referer: string
+}
+
 // Simple in-memory storage (gunakan database untuk production)
-const visitors = []
-const dailyStats = new Map()
+const visitors: VisitorData[] = []
+const dailyStats = new Map<string, number>()
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   
-  const visitorData = {
+  const visitorData: VisitorData = {
     id: Date.now() + Math.random(),
     page: body.page,
     timestamp: body.timestamp || new Date().toISOString(),
