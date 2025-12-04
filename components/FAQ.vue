@@ -18,13 +18,13 @@
         <div 
           v-for="(faq, index) in faqs" 
           :key="index"
-          class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+          class="group bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl dark:shadow-blue-500/10 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 backdrop-blur-sm"
         >
           <button
             @click="toggleFaq(index)"
-            class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+            class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
           >
-            <span class="text-lg font-semibold text-gray-900 pr-8">{{ faq.question }}</span>
+            <span class="text-lg font-semibold text-gray-900 dark:text-white pr-8">{{ faq.question }}</span>
             <div 
               class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center transform transition-transform duration-300"
               :class="{ 'rotate-180': faq.isOpen }"

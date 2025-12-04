@@ -36,8 +36,8 @@
             </svg>
           </div>
           <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">140+</div>
-          <div class="text-gray-600 font-medium">Klien Terpercaya</div>
-          <div class="text-xs text-gray-500 mt-1">Di 15+ Kota</div>
+          <div class="text-gray-600 dark:text-gray-300 font-medium">Klien Terpercaya</div>
+          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Di 15+ Kota</div>
         </div>
 
         <!-- Stat 3 -->
