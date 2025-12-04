@@ -28,7 +28,7 @@
               <component :is="point.icon" class="w-8 h-8 text-white" />
             </div>
             
-            <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
               {{ point.title }}
             </h3>
             

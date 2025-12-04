@@ -38,6 +38,10 @@
   .heading-xl {
     @apply text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight;
   }
+
+  .glass-card {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50;
+  }
 }
 
 @layer utilities {
@@ -162,41 +166,19 @@
     animation: glow 2s ease-in-out infinite;
   }
 
-  /* View Transitions API - Zoom effect untuk dark/light mode toggle */
+  /* View Transitions API - Circular clip-path reveal effect */
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 0.5s;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 9999;
   }
 
   ::view-transition-old(root) {
-    animation-name: zoom-out-fade;
-  }
-
-  ::view-transition-new(root) {
-    animation-name: zoom-in-fade;
-  }
-
-  @keyframes zoom-out-fade {
-    from {
-      transform: scale(1);
-      opacity: 1;
-    }
-    to {
-      transform: scale(0.95);
-      opacity: 0;
-    }
-  }
-
-  @keyframes zoom-in-fade {
-    from {
-      transform: scale(1.05);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
+    z-index: 1;
   }
 
   @keyframes shine {

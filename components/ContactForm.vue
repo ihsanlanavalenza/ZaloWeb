@@ -5,8 +5,8 @@
     
     <!-- Animated Background Elements -->
     <div class="absolute inset-0 opacity-20">
-      <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
-      <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-10 left-10 w-72 h-72 bg-white dark:bg-blue-400 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-300 dark:bg-purple-500 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
     </div>
     
     <div class="container mx-auto px-4 relative z-10">

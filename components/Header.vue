@@ -114,7 +114,7 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ]
 
-const toggleDarkMode = async () => {
+const toggleDarkMode = async (event: MouseEvent) => {
   // Check if browser supports View Transitions API
   if (!document.startViewTransition) {
     // Fallback for browsers that don't support View Transitions
@@ -129,7 +129,15 @@ const toggleDarkMode = async () => {
     return
   }
 
-  // Use View Transitions API with zoom effect
+  // Get click position for circular reveal animation
+  const x = event.clientX
+  const y = event.clientY
+  const endRadius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y)
+  )
+
+  // Start View Transition with circular clip-path animation
   const transition = document.startViewTransition(() => {
     isDark.value = !isDark.value
     if (isDark.value) {
@@ -142,6 +150,21 @@ const toggleDarkMode = async () => {
   })
 
   await transition.ready
+
+  // Animate with circular clip-path from click position
+  document.documentElement.animate(
+    {
+      clipPath: [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ]
+    },
+    {
+      duration: 600,
+      easing: 'cubic-bezier(.76,.32,.29,.99)',
+      pseudoElement: '::view-transition-new(root)'
+    }
+  )
 }
 
 onMounted(() => {
