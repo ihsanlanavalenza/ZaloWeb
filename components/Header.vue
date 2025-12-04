@@ -114,7 +114,7 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ]
 
-const toggleDarkMode = async (event: MouseEvent) => {
+const toggleDarkMode = async (event: any) => {
   // Check if browser supports View Transitions API
   if (!document.startViewTransition) {
     // Fallback for browsers that don't support View Transitions
