@@ -162,6 +162,43 @@
     animation: glow 2s ease-in-out infinite;
   }
 
+  /* View Transitions API - Zoom effect untuk dark/light mode toggle */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: zoom-out-fade;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: zoom-in-fade;
+  }
+
+  @keyframes zoom-out-fade {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+  }
+
+  @keyframes zoom-in-fade {
+    from {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
   @keyframes shine {
     0% {
       transform: translateX(-100%) translateY(-100%) rotate(45deg);

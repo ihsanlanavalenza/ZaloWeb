@@ -114,24 +114,34 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ]
 
-const toggleDarkMode = () => {
-  isDark.value = !isDark.value
-  
-  // Add smooth transition class
-  document.documentElement.style.setProperty('view-transition-name', 'theme-transition')
-  
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
+const toggleDarkMode = async () => {
+  // Check if browser supports View Transitions API
+  if (!document.startViewTransition) {
+    // Fallback for browsers that don't support View Transitions
+    isDark.value = !isDark.value
+    if (isDark.value) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+    return
   }
-  
-  // Remove transition class after animation
-  setTimeout(() => {
-    document.documentElement.style.removeProperty('view-transition-name')
-  }, 500)
+
+  // Use View Transitions API with zoom effect
+  const transition = document.startViewTransition(() => {
+    isDark.value = !isDark.value
+    if (isDark.value) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+  })
+
+  await transition.ready
 }
 
 onMounted(() => {
