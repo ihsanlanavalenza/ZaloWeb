@@ -5,12 +5,7 @@
         <!-- Company Info -->
         <div>
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <h3 class="text-white text-xl font-bold">ZaloWeb</h3>
+            <img src="/Logo-putih-lanscpae.svg" alt="ZaloWeb Logo" class="h-14 w-auto">
           </div>
           <p class="text-sm leading-relaxed text-gray-400">
             Professional IT solutions for modern businesses. Transform your digital presence with cutting-edge technology.

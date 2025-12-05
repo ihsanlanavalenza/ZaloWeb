@@ -136,19 +136,8 @@
 </template>
 
 <style scoped>
-.glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.dark .glass-card {
-  background: rgba(31, 41, 55, 0.85);
-  border: 1px solid rgba(75, 85, 99, 0.3);
-}
-
 @keyframes blob {
-  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  0%, 100% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }
   66% { transform: translate(-20px, 20px) scale(0.9); }
 }

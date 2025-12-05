@@ -4,14 +4,8 @@
       <div class="flex items-center justify-between px-6 py-4 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-gray-200/80 dark:border-gray-700/80 shadow-xl shadow-gray-200/50 dark:shadow-gray-900/50">
         <!-- Logo -->
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-          </div>
-          <div class="text-xl font-bold text-gray-900 dark:text-white">
-            ZaloWeb
-          </div>
+          <img src="/Logo-hitam-lanscape.svg" alt="ZaloWeb Logo" class="h-12 w-auto dark:hidden">
+          <img src="/Logo-putih-lanscpae.svg" alt="ZaloWeb Logo" class="h-12 w-auto hidden dark:block">
         </div>
 
         <!-- Desktop Navigation -->
@@ -29,7 +23,7 @@
         <!-- CTA Buttons & Dark Mode Toggle -->
         <div class="hidden md:flex items-center gap-3">
           <button 
-            @click="toggleDarkMode"
+            @click="toggleDarkMode($event)"
             class="p-2.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 active:scale-95 group"
             aria-label="Toggle dark mode"
           >
@@ -51,7 +45,7 @@
         <!-- Mobile Menu & Dark Mode Toggle -->
         <div class="md:hidden flex items-center gap-2">
           <button 
-            @click="toggleDarkMode"
+            @click="toggleDarkMode($event)"
             class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 active:scale-95 group"
             aria-label="Toggle dark mode"
           >
@@ -129,7 +123,7 @@ const toggleDarkMode = async (event) => {
     return
   }
 
-  // Get click position for circular reveal animation
+  // Get click position for ripple animation
   const x = event.clientX
   const y = event.clientY
   const endRadius = Math.hypot(
@@ -137,7 +131,7 @@ const toggleDarkMode = async (event) => {
     Math.max(y, window.innerHeight - y)
   )
 
-  // Start View Transition with circular clip-path animation
+  // Use View Transitions API with smooth ripple expand
   const transition = document.startViewTransition(() => {
     isDark.value = !isDark.value
     if (isDark.value) {
@@ -150,18 +144,18 @@ const toggleDarkMode = async (event) => {
   })
 
   await transition.ready
-
-  // Animate with circular clip-path from click position
-  document.documentElement.animate(
+  
+  // Smooth circular wipe animation yang terlihat jelas
+  const clipPathKeyframes = [
+    `circle(0% at ${x}px ${y}px)`,
+    `circle(150% at ${x}px ${y}px)`
+  ]
+  
+  const clipPathAnimation = document.documentElement.animate(
+    { clipPath: clipPathKeyframes },
     {
-      clipPath: [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`
-      ]
-    },
-    {
-      duration: 600,
-      easing: 'cubic-bezier(.76,.32,.29,.99)',
+      duration: 500,
+      easing: 'ease-in',
       pseudoElement: '::view-transition-new(root)'
     }
   )
