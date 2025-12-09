@@ -1,13 +1,13 @@
 <template>
-  <section id="features" class="py-16 md:py-24 bg-white">
+  <section id="features" class="py-16 md:py-24 bg-white dark:bg-gray-900">
     <div class="container mx-auto px-4">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Features</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-4">
+        <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">Features</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
           Why Choose Our Services
         </h2>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-gray-600 dark:text-gray-300">
           Discover the powerful features that make us the best choice for your IT needs
         </p>
       </div>
@@ -17,21 +17,21 @@
         <div 
           v-for="(feature, index) in features" 
           :key="index"
-          class="group p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50"
+          class="group p-8 rounded-2xl border-2 border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white dark:bg-gray-800 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-750 dark:hover:to-gray-750"
         >
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
-            <component :is="feature.icon" class="w-8 h-8 text-blue-600 group-hover:text-purple-600 transition-colors" />
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/50 dark:to-purple-900/50 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:shadow-lg transition-all duration-300">
+            <component :is="feature.icon" class="w-8 h-8 text-blue-600 dark:text-blue-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors" />
           </div>
           
-          <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {{ feature.title }}
           </h3>
           
-          <p class="text-gray-600 leading-relaxed">
+          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
             {{ feature.description }}
           </p>
           
-          <div class="mt-4 flex items-center text-blue-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="mt-4 flex items-center text-blue-600 dark:text-blue-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
             Learn more
             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

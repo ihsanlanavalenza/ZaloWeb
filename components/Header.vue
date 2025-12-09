@@ -4,23 +4,23 @@
       <div class="flex items-center justify-between px-6 py-4 rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-gray-200/80 dark:border-gray-700/80 shadow-xl shadow-gray-200/50 dark:shadow-gray-900/50">
         <!-- Logo -->
         <div class="flex items-center gap-3">
-          <img src="/Logo-hitam-lanscape.svg" alt="ZaloWeb Logo" class="h-12 w-auto dark:hidden">
-          <img src="/Logo-putih-lanscpae.svg" alt="ZaloWeb Logo" class="h-12 w-auto hidden dark:block">
+          <img src="/Logo-ungu-lanscape.svg" alt="ZaloWeb Logo" class="h-16 md:h-20 w-auto dark:hidden">
+          <img src="/Logo-putih-lanscpae.svg" alt="ZaloWeb Logo" class="h-16 md:h-20 w-auto hidden dark:block">
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-6">
+        <div class="hidden md:flex items-center space-x-2">
           <a 
             v-for="item in navItems" 
             :key="item.name"
             :href="item.href"
-            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-medium text-sm"
+            class="text-gray-700 dark:text-gray-300 hover:text-white dark:hover:text-gray-900 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 dark:hover:from-purple-400 dark:hover:to-blue-400 hover:shadow-lg hover:shadow-purple-500/50 dark:hover:shadow-purple-300/50 transition-all duration-500 ease-out font-medium text-sm px-4 py-2.5 rounded-xl hover:scale-105 hover:-translate-y-0.5"
           >
             {{ item.name }}
           </a>
         </div>
 
-        <!-- CTA Buttons & Dark Mode Toggle -->
+        <!-- Dark Mode Toggle -->
         <div class="hidden md:flex items-center gap-3">
           <button 
             @click="toggleDarkMode($event)"
@@ -33,12 +33,6 @@
             <svg v-else class="w-5 h-5 text-gray-700 dark:text-gray-300 transition-transform duration-500 rotate-0 group-hover:-rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
             </svg>
-          </button>
-          <button class="px-5 py-2 rounded-full font-medium text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 border border-gray-200 dark:border-gray-700">
-            Sign In
-          </button>
-          <button class="px-5 py-2 rounded-full font-medium text-sm text-white bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-600 transition-all duration-300 shadow-lg shadow-blue-500/30 dark:shadow-purple-500/30">
-            Sign Up
           </button>
         </div>
 
@@ -81,14 +75,6 @@
             {{ item.name }}
           </a>
         </div>
-        <div class="flex flex-col gap-2 pt-4 mt-4 border-t border-gray-200 dark:border-gray-700">
-          <button class="w-full px-6 py-2.5 rounded-full font-medium text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all border border-gray-200 dark:border-gray-700">
-            Sign In
-          </button>
-          <button class="w-full px-6 py-2.5 rounded-full font-medium text-sm text-white bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-500 dark:to-purple-500 hover:from-blue-700 hover:to-purple-700 dark:hover:from-blue-600 dark:hover:to-purple-600 transition-all shadow-lg shadow-blue-500/30 dark:shadow-purple-500/30">
-            Sign Up
-          </button>
-        </div>
       </div>
     </nav>
   </header>
@@ -98,7 +84,7 @@
 import { ref, onMounted } from 'vue'
 
 const mobileMenuOpen = ref(false)
-const isDark = ref(false)
+const isDark = ref(true) // Default to dark mode
 
 const navItems = [
   { name: 'Home', href: '#home' },
@@ -123,7 +109,7 @@ const toggleDarkMode = async (event) => {
     return
   }
 
-  // Get click position for ripple animation
+  // Get click position for ripple animation origin
   const x = event.clientX
   const y = event.clientY
   const endRadius = Math.hypot(
@@ -131,7 +117,7 @@ const toggleDarkMode = async (event) => {
     Math.max(y, window.innerHeight - y)
   )
 
-  // Use View Transitions API with smooth ripple expand
+  // Use View Transitions API with smooth circular wipe
   const transition = document.startViewTransition(() => {
     isDark.value = !isDark.value
     if (isDark.value) {
@@ -145,30 +131,55 @@ const toggleDarkMode = async (event) => {
 
   await transition.ready
   
-  // Smooth circular wipe animation yang terlihat jelas
-  const clipPathKeyframes = [
-    `circle(0% at ${x}px ${y}px)`,
-    `circle(150% at ${x}px ${y}px)`
-  ]
-  
-  const clipPathAnimation = document.documentElement.animate(
-    { clipPath: clipPathKeyframes },
+  // Circular clip-path animation - works both ways (light ↔ dark)
+  document.documentElement.animate(
     {
-      duration: 500,
-      easing: 'ease-in',
+      clipPath: [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ]
+    },
+    {
+      duration: 700,
+      easing: 'ease-in-out',
       pseudoElement: '::view-transition-new(root)'
     }
   )
 }
 
 onMounted(() => {
-  // Check saved theme or system preference
+  // Check saved theme or default to dark
   const savedTheme = localStorage.getItem('theme')
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   
-  if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+  // Default to dark if no saved preference
+  if (savedTheme === 'dark' || !savedTheme) {
     isDark.value = true
     document.documentElement.classList.add('dark')
+  } else if (savedTheme === 'light') {
+    isDark.value = false
+    document.documentElement.classList.remove('dark')
   }
 })
 </script>
+
+<style>
+/* View Transition API - Smooth Circular Wipe Animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in-out;
+}
+
+/* Default layer order */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* No need to reverse - animation works bidirectionally */
+</style>

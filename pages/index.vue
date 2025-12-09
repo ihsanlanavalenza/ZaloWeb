@@ -3,6 +3,7 @@
     <Header />
     <main class="pt-20">
       <HeroSection />
+      <BannerSection />
       <StatsSection />
       <ClientLogos />
       <WhyChooseUs />

@@ -8,10 +8,10 @@
       'bg-white dark:bg-gray-900 overflow-hidden'
     ]"
   >
-    <!-- Popular Badge -->
-    <div v-if="plan.popular" class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-      <div class="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold rounded-full shadow-lg">
-        TERPOPULER
+    <!-- Popular Badge - Inside Card -->
+    <div v-if="plan.popular" class="absolute top-0 left-0 right-0 z-10 flex justify-center">
+      <div class="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold rounded-b-full shadow-lg">
+        ⭐ TERPOPULER
       </div>
     </div>
 
@@ -22,9 +22,9 @@
     ></div>
 
     <!-- Card Content -->
-    <div class="relative p-8">
+    <div class="relative p-6 md:p-8 pt-12">
       <!-- Badge -->
-      <div class="mb-6">
+      <div class="mb-4">
         <span
           :class="[
             'inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wide',
@@ -37,7 +37,7 @@
       </div>
 
       <!-- Plan Name & Description -->
-      <div class="mb-6">
+      <div class="mb-4">
         <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
           {{ plan.name }}
         </h3>
@@ -47,12 +47,12 @@
       </div>
 
       <!-- Price -->
-      <div class="mb-8">
-        <div class="flex items-baseline gap-2 mb-2">
+      <div class="mb-6">
+        <div class="flex items-baseline gap-2 mb-1">
           <span class="text-sm font-semibold text-gray-900 dark:text-white">Rp</span>
           <span
             :class="[
-              'text-5xl font-black',
+              'text-4xl md:text-5xl font-black',
               plan.popular
                 ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600'
                 : 'text-gray-900 dark:text-white'
@@ -67,11 +67,11 @@
       </div>
 
       <!-- Features List -->
-      <ul class="space-y-3 mb-8">
+      <ul class="space-y-2.5 mb-6">
         <li
           v-for="(feature, index) in plan.features"
           :key="index"
-          class="flex items-start gap-3 text-sm"
+          class="flex items-start gap-2.5 text-sm"
         >
           <svg
             class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5"
@@ -94,7 +94,7 @@
       <a
         :href="`https://wa.me/6281234567890?text=${plan.whatsappText}`"
         :class="[
-          'block w-full px-6 py-4 rounded-xl font-bold text-center transition-all duration-200 shadow-md hover:shadow-xl',
+          'block w-full px-6 py-3.5 rounded-xl font-bold text-center transition-all duration-200 shadow-md hover:shadow-xl',
           plan.popular
             ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white'
             : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'

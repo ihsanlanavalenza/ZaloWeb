@@ -1,0 +1,277 @@
+{
+  "header": {
+    "badge": "Portfolio Kami",
+    "title": "Karya yang Berbicara",
+    "description": "Dari startup hingga enterprise, kami telah membantu 180+ bisnis mencapai kesuksesan digital mereka"
+  },
+  "items": [
+    {
+      "id": 1,
+      "type": "hero",
+      "colSpan": "lg:col-span-2",
+      "rowSpan": "lg:row-span-2",
+      "bgGradient": "bg-gradient-to-br from-orange-500 to-red-600",
+      "aspectRatio": "aspect-square relative",
+      "image": "/images/project/1.png",
+      "imageEffect": "group-hover:scale-105 transition-transform duration-500 mix-blend-overlay opacity-60",
+      "padding": "p-8",
+      "contentLayout": "flex flex-col justify-between",
+      "badge": "Behind the Designs",
+      "title": "Shaping Experiences That Make Life Simpler",
+      "description": "I'm a product designer focused on building clean, intuitive interfaces that solve real-world problems.",
+      "showPlaceholders": true,
+      "orderIndex": 1,
+      "isActive": true,
+      "category": "featured",
+      "tags": ["design", "UX", "UI"],
+      "createdAt": "2025-01-01T00:00:00Z",
+      "updatedAt": "2025-12-09T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "type": "feature",
+      "colSpan": "lg:col-span-2",
+      "rowSpan": "",
+      "bgGradient": "bg-gradient-to-br from-gray-900 to-gray-800",
+      "aspectRatio": "aspect-[2/1] relative",
+      "image": "/images/project/2.png",
+      "imageEffect": "opacity-40",
+      "padding": "p-8",
+      "contentLayout": "flex flex-col justify-center",
+      "title": "Strategist. Creative partner.",
+      "description": "Blending clarity and creativity to build brands with purpose.",
+      "showButton": true,
+      "buttonText": "See more",
+      "orderIndex": 2,
+      "isActive": true,
+      "category": "services",
+      "tags": ["strategy", "branding"]
+    },
+    {
+      "id": 3,
+      "type": "pricing",
+      "colSpan": "lg:col-span-2",
+      "rowSpan": "",
+      "bgGradient": "bg-gray-900",
+      "aspectRatio": "aspect-[2/1] relative p-8",
+      "padding": "",
+      "contentLayout": "",
+      "badge": "Pricing",
+      "title": "Simple Packages for Every Stage",
+      "prices": [
+        {
+          "name": "Starter",
+          "amount": "$1990",
+          "featured": false,
+          "features": [
+            "Basic Design",
+            "5 Revisions",
+            "Email Support"
+          ]
+        },
+        {
+          "name": "Professional",
+          "amount": "$2990",
+          "featured": true,
+          "features": [
+            "Advanced Design",
+            "Unlimited Revisions",
+            "Priority Support",
+            "Source Files"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "amount": "$4990",
+          "featured": false,
+          "features": [
+            "Custom Solution",
+            "Dedicated Team",
+            "24/7 Support",
+            "Full Ownership"
+          ]
+        }
+      ],
+      "orderIndex": 3,
+      "isActive": true,
+      "category": "pricing"
+    },
+    {
+      "id": 4,
+      "type": "about",
+      "colSpan": "lg:col-span-2",
+      "rowSpan": "",
+      "bgGradient": "bg-gradient-to-br from-purple-600 to-purple-800",
+      "aspectRatio": "aspect-[2/1] relative",
+      "image": "/images/project/3.png",
+      "imageEffect": "mix-blend-overlay opacity-80",
+      "padding": "p-8",
+      "contentLayout": "flex items-center justify-between",
+      "badge": "Fabulous",
+      "badgeColor": "text-purple-200",
+      "title": "About",
+      "subtitle": "Brand Designer",
+      "description": "The Person Behind the Work",
+      "orderIndex": 4,
+      "isActive": true,
+      "category": "about"
+    },
+    {
+      "id": 5,
+      "type": "project",
+      "colSpan": "",
+      "rowSpan": "",
+      "bgGradient": "bg-gray-900",
+      "aspectRatio": "aspect-square relative",
+      "image": "/images/project/4.png",
+      "imageEffect": "opacity-40",
+      "padding": "p-6",
+      "contentLayout": "flex flex-col justify-end",
+      "title": "Orange Blox",
+      "description": "Fashion brand identity design",
+      "buttonStyle": "bg-orange-500 text-white",
+      "category": "branding",
+      "client": "Orange Blox Inc.",
+      "projectUrl": "https://example.com/orange-blox",
+      "tags": ["fashion", "branding", "identity"],
+      "orderIndex": 5,
+      "isActive": true,
+      "completedAt": "2024-10-15",
+      "metrics": {
+        "duration": "3 months",
+        "teamSize": 4,
+        "satisfaction": 5
+      }
+    },
+    {
+      "id": 6,
+      "type": "project",
+      "colSpan": "",
+      "rowSpan": "",
+      "bgGradient": "bg-gray-900",
+      "aspectRatio": "aspect-square relative",
+      "image": "/images/project/5.png",
+      "imageEffect": "opacity-40",
+      "padding": "p-6",
+      "contentLayout": "flex flex-col justify-end",
+      "title": "Nova Scene",
+      "description": "Perfume brand packaging",
+      "buttonStyle": "bg-orange-500 text-white",
+      "category": "packaging",
+      "client": "Nova Perfumes",
+      "projectUrl": "https://example.com/nova-scene",
+      "tags": ["packaging", "luxury", "perfume"],
+      "orderIndex": 6,
+      "isActive": true,
+      "completedAt": "2024-11-20"
+    },
+    {
+      "id": 7,
+      "type": "project",
+      "colSpan": "",
+      "rowSpan": "",
+      "bgGradient": "bg-gray-900",
+      "aspectRatio": "aspect-square relative",
+      "image": "/images/project/6.png",
+      "imageEffect": "opacity-40",
+      "padding": "p-6",
+      "contentLayout": "flex flex-col justify-end",
+      "title": "Arched Pink",
+      "description": "Sustainable fashion line",
+      "buttonStyle": "bg-orange-500 text-white",
+      "category": "fashion",
+      "client": "Arched Fashion",
+      "projectUrl": "https://example.com/arched-pink",
+      "tags": ["fashion", "sustainable", "eco-friendly"],
+      "orderIndex": 7,
+      "isActive": true,
+      "completedAt": "2024-09-10"
+    },
+    {
+      "id": 8,
+      "type": "project",
+      "colSpan": "",
+      "rowSpan": "",
+      "bgGradient": "bg-gradient-to-br from-orange-500 to-red-600",
+      "aspectRatio": "aspect-square relative",
+      "image": "/images/project/7.png",
+      "imageEffect": "mix-blend-overlay opacity-60",
+      "padding": "p-6",
+      "contentLayout": "flex flex-col justify-end",
+      "title": "Liquid",
+      "description": "Abstract art collection",
+      "buttonStyle": "bg-white/20 backdrop-blur-sm text-white",
+      "category": "art",
+      "client": "Liquid Arts",
+      "projectUrl": "https://example.com/liquid",
+      "tags": ["art", "abstract", "collection"],
+      "orderIndex": 8,
+      "isActive": true,
+      "completedAt": "2024-12-01"
+    },
+    {
+      "id": 9,
+      "type": "info",
+      "colSpan": "lg:col-span-2",
+      "rowSpan": "",
+      "bgGradient": "bg-gray-900",
+      "aspectRatio": "aspect-[2/1] relative p-8",
+      "padding": "",
+      "contentLayout": "flex items-center justify-between h-full",
+      "badge": "Who I Am",
+      "title": "Design with Purpose and Personality",
+      "description": "Shaping meaningful brands through strategy, creativity, and collaboration.",
+      "orderIndex": 9,
+      "isActive": true,
+      "category": "info"
+    }
+  ],
+  "stats": [
+    {
+      "id": 1,
+      "value": "180+",
+      "label": "Projek Selesai",
+      "orderIndex": 1,
+      "isActive": true,
+      "color": "default"
+    },
+    {
+      "id": 2,
+      "value": "140+",
+      "label": "Klien Puas",
+      "orderIndex": 2,
+      "isActive": true,
+      "color": "default"
+    },
+    {
+      "id": 3,
+      "value": "99.8%",
+      "label": "Uptime Rate",
+      "orderIndex": 3,
+      "isActive": true,
+      "color": "default"
+    },
+    {
+      "id": 4,
+      "value": "4.8/5",
+      "label": "Rating Klien",
+      "orderIndex": 4,
+      "isActive": true,
+      "color": "default"
+    }
+  ],
+  "cta": {
+    "text": "Lihat 200+ Portfolio Kami",
+    "link": "#portfolio",
+    "style": "gradient",
+    "isActive": true,
+    "icon": "eye"
+  },
+  "meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-12-09T00:00:00Z",
+    "author": "ZaloWeb Team",
+    "language": "id",
+    "status": "published"
+  }
+}

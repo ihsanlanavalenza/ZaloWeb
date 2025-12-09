@@ -1,125 +1,334 @@
 <template>
-  <section class="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
-    <!-- Background Effects -->
-    <div class="absolute inset-0 grain opacity-50"></div>
+  <section class="py-20 md:py-32 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <!-- Minimal Background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50/30 dark:via-gray-800/30 to-transparent"></div>
     
     <div class="container mx-auto px-4 relative z-10">
-      <!-- Section Header -->
+      <!-- Section Header - Minimalist & Elegant -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">
-          Dipercaya Berbagai Bisnis di Indonesia
+        <div class="inline-block mb-4">
+          <span class="text-sm font-semibold text-blue-600 dark:text-blue-400 tracking-wider uppercase">
+            {{ header.badge }}
+          </span>
+        </div>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+          {{ header.title }}
         </h2>
-        <p class="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-          Startup yang berkembang pesat dengan tim profesional berpengalaman, siap membantu kesuksesan digital bisnis Anda
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          {{ header.description }}
         </p>
       </div>
 
-      <!-- Stats Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <!-- Stat 1 -->
-        <div class="glass-card rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 group">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/50">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-            </svg>
+      <!-- Portfolio Showcase - Carousel with Peek Effect -->
+      <div v-if="portfolioItems && portfolioItems.length > 0" class="mb-20 relative">
+        <!-- Portfolio Slider Container -->
+        <div class="relative overflow-hidden">
+          <!-- Inner wrapper for centering -->
+          <div class="flex justify-center items-center min-h-[600px]">
+            <!-- Slider Track -->
+            <div class="relative w-full max-w-7xl">
+              <!-- Slides Container -->
+              <div class="relative px-4 md:px-12" style="perspective: 1200px">
+                <!-- Current slide with peek cards -->
+                <div class="flex gap-2 md:gap-4 justify-center items-center">
+                  <!-- Peek Left Card -->
+                  <div
+                    v-if="getPeekItem(currentSlide - 1)"
+                    :class="[
+                      'hidden md:block relative rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0 transition-all duration-500',
+                      getPeekItem(currentSlide - 1).bgGradient,
+                      'aspect-[9/16] w-56 lg:w-64 opacity-40 hover:opacity-60 -mr-6 lg:-mr-8'
+                    ]"
+                    style="transform: scale(0.85) perspective(800px) rotateY(12deg) translateZ(-30px)"
+                    @click="prevSlide"
+                  >
+                    <div class="relative w-full h-full">
+                      <img 
+                        v-if="getPeekItem(currentSlide - 1).image"
+                        :src="getPeekItem(currentSlide - 1).image" 
+                        :alt="getPeekItem(currentSlide - 1).title"
+                        class="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent"></div>
+                    </div>
+                  </div>
+
+                  <!-- Main Active Card -->
+                  <div
+                    v-if="portfolioItems[currentSlide]"
+                    :class="[
+                      'group relative rounded-2xl overflow-hidden shadow-2xl flex-shrink-0 transition-all duration-500 z-10',
+                      portfolioItems[currentSlide].bgGradient,
+                      'aspect-[9/16] w-72 sm:w-80 md:w-96'
+                    ]"
+                    style="transform: scale(1) translateZ(0)"
+                  >
+                    <div class="relative w-full h-full">
+                      <!-- Image (if exists) -->
+                      <img 
+                      v-if="portfolioItems[currentSlide].image"
+                      :src="portfolioItems[currentSlide].image" 
+                      :alt="portfolioItems[currentSlide].title"
+                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500"
+                      />
+                      
+                      <!-- Gradient Overlay -->
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                      
+                      <!-- Content Overlay -->
+                      <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <!-- Hero Type -->
+                        <template v-if="portfolioItems[currentSlide].type === 'hero'">
+                          <div class="space-y-3">
+                            <span class="text-orange-400 text-xs font-semibold uppercase tracking-wider bg-orange-500/20 px-3 py-1 rounded-full inline-block backdrop-blur-sm w-fit">
+                              {{ portfolioItems[currentSlide].badge }}
+                            </span>
+                            <h3 class="text-2xl md:text-3xl font-black text-white leading-tight">{{ portfolioItems[currentSlide].title }}</h3>
+                            <p class="text-white/80 text-sm line-clamp-2">{{ portfolioItems[currentSlide].description }}</p>
+                          </div>
+                        </template>
+
+                        <!-- Feature Type -->
+                        <template v-else-if="portfolioItems[currentSlide].type === 'feature'">
+                          <div class="space-y-3">
+                            <h3 class="text-2xl font-bold text-white leading-tight">{{ portfolioItems[currentSlide].title }}</h3>
+                            <p class="text-white/70 text-sm line-clamp-2">{{ portfolioItems[currentSlide].description }}</p>
+                            <button v-if="portfolioItems[currentSlide].showButton" class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full w-fit transition-all text-sm border border-white/20">
+                              <span class="font-semibold">{{ portfolioItems[currentSlide].buttonText }}</span>
+                              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+                            </button>
+                          </div>
+                        </template>
+
+                        <!-- About Type -->
+                        <template v-else-if="portfolioItems[currentSlide].type === 'about'">
+                          <div class="space-y-3">
+                            <span class="text-purple-400 text-xs font-semibold uppercase tracking-wider bg-purple-500/20 px-3 py-1 rounded-full inline-block backdrop-blur-sm w-fit">{{ portfolioItems[currentSlide].badge }}</span>
+                            <h3 class="text-2xl font-black text-white">{{ portfolioItems[currentSlide].title }}</h3>
+                            <p class="text-white/70 text-sm line-clamp-2">{{ portfolioItems[currentSlide].description }}</p>
+                          </div>
+                        </template>
+
+                        <!-- Project Type -->
+                        <template v-else-if="portfolioItems[currentSlide].type === 'project'">
+                          <div class="space-y-2">
+                            <h4 class="text-xl md:text-2xl font-bold text-white">{{ portfolioItems[currentSlide].title }}</h4>
+                            <p class="text-white/70 text-sm line-clamp-2">{{ portfolioItems[currentSlide].description }}</p>
+                            <div class="flex items-center gap-2 text-white/60 text-xs mt-2">
+                              <span v-if="portfolioItems[currentSlide].category" class="px-2 py-1 bg-white/10 rounded-full backdrop-blur-sm">{{ portfolioItems[currentSlide].category }}</span>
+                              <span v-if="portfolioItems[currentSlide].client" class="truncate">{{ portfolioItems[currentSlide].client }}</span>
+                            </div>
+                          </div>
+                        </template>
+
+                        <!-- Info Type -->
+                        <template v-else-if="portfolioItems[currentSlide].type === 'info'">
+                          <div class="space-y-3">
+                            <span class="text-blue-400 text-xs font-semibold uppercase tracking-wider bg-blue-500/20 px-3 py-1 rounded-full inline-block backdrop-blur-sm w-fit">{{ portfolioItems[currentSlide].badge }}</span>
+                            <h3 class="text-2xl font-bold text-white">{{ portfolioItems[currentSlide].title }}</h3>
+                            <p class="text-white/70 text-sm line-clamp-3">{{ portfolioItems[currentSlide].description }}</p>
+                          </div>
+                        </template>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Peek Right Card -->
+                  <div
+                    v-if="getPeekItem(currentSlide + 1)"
+                    :class="[
+                      'hidden md:block relative rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0 transition-all duration-500',
+                      getPeekItem(currentSlide + 1).bgGradient,
+                      'aspect-[9/16] w-56 lg:w-64 opacity-40 hover:opacity-60 -ml-6 lg:-ml-8'
+                    ]"
+                    style="transform: scale(0.85) perspective(800px) rotateY(-12deg) translateZ(-30px)"
+                    @click="nextSlide"
+                  >
+                    <div class="relative w-full h-full">
+                      <img 
+                        v-if="getPeekItem(currentSlide + 1).image"
+                        :src="getPeekItem(currentSlide + 1).image" 
+                        :alt="getPeekItem(currentSlide + 1).title"
+                        class="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button 
+                @click="prevSlide"
+                class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-3 rounded-full transition-all duration-300 z-10 border border-white/20 hover:scale-110 shadow-lg"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              
+              <button 
+                @click="nextSlide"
+                class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white p-3 rounded-full transition-all duration-300 z-10 border border-white/20 hover:scale-110 shadow-lg"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
           </div>
-          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">180+</div>
-          <div class="text-gray-600 dark:text-gray-300 font-medium">Projek Selesai</div>
-          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Sejak 2022</div>
         </div>
 
-        <!-- Stat 2 -->
-        <div class="glass-card rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 group">
-          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-purple-500/50">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-            </svg>
-          </div>
-          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">140+</div>
-          <div class="text-gray-600 dark:text-gray-300 font-medium">Klien Terpercaya</div>
-          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Di 15+ Kota</div>
-        </div>
-
-        <!-- Stat 3 -->
-        <div class="glass-card rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 group">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/50">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
-            </svg>
-          </div>
-          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">99.8%</div>
-          <div class="text-gray-600 dark:text-gray-300 font-medium">Uptime Server</div>
-          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Hosting Reliable</div>
-        </div>
-
-        <!-- Stat 4 -->
-        <div class="glass-card rounded-3xl p-8 text-center hover:scale-105 transition-all duration-300 group">
-          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg shadow-purple-500/50">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-            </svg>
-          </div>
-          <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">4.8/5</div>
-          <div class="text-gray-600 dark:text-gray-300 font-medium">Rating Klien</div>
-          <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Google Reviews</div>
+        <!-- Slider Dots Indicator -->
+        <div class="flex justify-center gap-2 mt-8">
+          <button
+            v-for="(item, index) in portfolioItems"
+            :key="index"
+            @click="goToSlide(index)"
+            :class="[
+              'transition-all duration-300',
+              currentSlide === index
+                ? 'w-8 h-2 bg-blue-600 rounded-full' 
+                : 'w-2 h-2 bg-gray-400 dark:bg-gray-600 rounded-full hover:bg-blue-400'
+            ]"
+          ></button>
         </div>
       </div>
 
-      <!-- Trust Badges -->
-      <div class="mt-16 glass-card rounded-3xl p-8">
-        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="font-bold text-gray-900 dark:text-white">Secure Payment</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Pembayaran Aman</div>
-            </div>
+      <!-- Stats Bar - Clean & Minimal -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 py-16 border-y border-gray-200 dark:border-gray-800">
+        <div 
+          v-for="stat in stats" 
+          :key="stat.label" 
+          class="text-center"
+        >
+          <div class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">
+            {{ stat.value }}
           </div>
-
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="font-bold text-gray-900 dark:text-white">24/7 Support</div>
-              <div class="text-sm text-gray-600 dark:text-gray-400">Siap Membantu</div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="font-bold text-gray-900">Quality Guarantee</div>
-              <div class="text-sm text-gray-600">Garansi Kualitas</div>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-            </div>
-            <div>
-              <div class="font-bold text-gray-900">Fast Delivery</div>
-              <div class="text-sm text-gray-600">Pengerjaan Cepat</div>
-            </div>
+          <div class="text-sm md:text-base text-gray-600 dark:text-gray-400">
+            {{ stat.label }}
           </div>
         </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="mt-16 text-center">
+        <a 
+          :href="cta.link" 
+          class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+          {{ cta.text }}
+        </a>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+
+// Menggunakan composable untuk data portfolio
+const { header, portfolioItems, stats, cta } = usePortfolio()
+
+// Slider State
+const currentSlide = ref(0)
+const sliderRef = ref(null)
+const isReady = ref(false)
+
+// Get peek item (previous or next card) with circular navigation
+const getPeekItem = (index) => {
+  if (!portfolioItems || portfolioItems.length === 0) return null
+  
+  // Handle wrap around for circular carousel
+  if (index < 0) {
+    return portfolioItems[portfolioItems.length - 1]
+  } else if (index >= portfolioItems.length) {
+    return portfolioItems[0]
+  }
+  
+  return portfolioItems[index]
+}
+
+// Calculate total slides (equals number of portfolio items)
+const totalSlides = computed(() => {
+  if (!portfolioItems || portfolioItems.length === 0) return 0
+  return portfolioItems.length
+})
+
+// Navigation functions
+const nextSlide = () => {
+  if (currentSlide.value < portfolioItems.length - 1) {
+    currentSlide.value++
+  } else {
+    currentSlide.value = 0 // Loop back to start
+  }
+}
+
+const prevSlide = () => {
+  if (currentSlide.value > 0) {
+    currentSlide.value--
+  } else {
+    currentSlide.value = portfolioItems.length - 1 // Loop to end
+  }
+}
+
+const goToSlide = (index) => {
+  currentSlide.value = index
+}
+
+// Auto-slide functionality
+let autoSlideInterval = null
+
+const startAutoSlide = () => {
+  autoSlideInterval = setInterval(() => {
+    nextSlide()
+  }, 5000) // Slide every 5 seconds
+}
+
+const stopAutoSlide = () => {
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval)
+  }
+}
+
+// Lifecycle
+onMounted(() => {
+  // Wait a tick to ensure DOM is ready
+  nextTick(() => {
+    if (portfolioItems && portfolioItems.length > 0) {
+      isReady.value = true
+      startAutoSlide()
+    }
+  })
+})
+
+onUnmounted(() => {
+  stopAutoSlide()
+})
 </script>
+
+<style scoped>
+/* Smooth hover effects with GPU acceleration */
+.group:hover {
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.group:hover img {
+  transform: scale(1.08) translateZ(0);
+}
+
+.group:hover [class*="bg-gradient"] {
+  background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.5), transparent);
+}
+
+/* Smooth scrolling for entire section */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>

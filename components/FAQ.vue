@@ -1,5 +1,5 @@
 <template>
-  <section id="faq" class="py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+  <section id="faq" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-850 dark:to-gray-900 relative overflow-hidden">
     <div class="absolute inset-0 grain opacity-20"></div>
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->

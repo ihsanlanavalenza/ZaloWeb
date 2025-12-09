@@ -1,79 +1,122 @@
 <template>
-  <section id="why-choose-us" class="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-    <div class="absolute inset-0 grain opacity-20"></div>
+  <section id="why-choose-us" class="py-16 md:py-24 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-850 dark:to-gray-900 relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-float-delayed"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-pink-400/10 rounded-full blur-3xl animate-pulse-slow"></div>
+    </div>
+    
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">Keunggulan Kami</span>
+      <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
+        <span class="inline-block text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
+          ✨ Keunggulan Kami
+        </span>
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
-          Mengapa Memilih <span class="gradient-text">ZaloWeb?</span>
+          Mengapa Memilih <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ZaloWeb?</span>
         </h2>
         <p class="text-lg text-gray-600 dark:text-gray-300">
           Kami memberikan solusi terbaik dengan komitmen penuh untuk kesuksesan bisnis Anda
         </p>
       </div>
 
-      <!-- Key Unique Selling Points -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <!-- Key Unique Selling Points with Stagger Animation -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
         <div 
           v-for="(point, index) in uniqueSellingPoints" 
           :key="index"
-          class="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl border-2 border-gray-100 hover:border-blue-500 hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden"
+          :style="{ animationDelay: `${index * 100}ms` }"
+          class="group relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden animate-fade-in-up"
         >
-          <!-- Gradient Overlay on Hover -->
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <!-- Animated Gradient Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-blue-600/10 group-hover:via-purple-600/10 group-hover:to-pink-600/10 transition-all duration-500"></div>
+          
+          <!-- Shine Effect -->
+          <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
           
           <div class="relative z-10">
-            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
-              <component :is="point.icon" class="w-8 h-8 text-white" />
+            <!-- Icon with Glow Effect -->
+            <div class="relative mb-6 w-fit">
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+              <div class="relative w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                <component :is="point.icon" class="w-8 h-8 text-white" />
+              </div>
             </div>
             
-            <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-300">
               {{ point.title }}
             </h3>
             
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-5 text-sm md:text-base">
               {{ point.description }}
             </p>
 
-            <!-- Features List -->
-            <ul class="space-y-2">
+            <!-- Features List with Icons -->
+            <ul class="space-y-2.5">
               <li 
                 v-for="(feature, idx) in point.features" 
                 :key="idx"
-                class="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300"
+                class="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300 group-hover:translate-x-1 transition-transform duration-300"
+                :style="{ transitionDelay: `${idx * 50}ms` }"
               >
-                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
+                <div class="relative flex-shrink-0 mt-0.5">
+                  <div class="absolute inset-0 bg-green-500 rounded-full blur opacity-0 group-hover:opacity-30 transition-opacity"></div>
+                  <svg class="relative w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
                 <span>{{ feature }}</span>
               </li>
             </ul>
           </div>
 
-          <!-- Decorative Circle -->
-          <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full opacity-20 group-hover:scale-150 transition-transform duration-500"></div>
+          <!-- Animated Decorative Elements -->
+          <div class="absolute -bottom-16 -right-16 w-40 h-40 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-10 group-hover:opacity-20 group-hover:scale-150 group-hover:rotate-45 transition-all duration-700"></div>
+          <div class="absolute -top-8 -left-8 w-24 h-24 bg-gradient-to-br from-pink-400 to-orange-400 rounded-full opacity-10 group-hover:opacity-20 group-hover:scale-125 transition-all duration-700"></div>
         </div>
       </div>
 
-      <!-- Statistics -->
-      <div class="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-blue-800 dark:to-purple-900 rounded-3xl p-8 md:p-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2" data-count="150">150+</div>
-            <div class="text-blue-100 font-medium">Proyek Selesai</div>
+      <!-- Statistics with Animation -->
+      <div class="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 dark:from-blue-800 dark:via-purple-900 dark:to-pink-900 rounded-3xl p-8 md:p-12 overflow-hidden shadow-2xl">
+        <!-- Animated Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 30px 30px;"></div>
+        </div>
+        
+        <!-- Floating Particles -->
+        <div class="absolute top-10 left-10 w-2 h-2 bg-white rounded-full animate-float opacity-60"></div>
+        <div class="absolute bottom-20 right-20 w-3 h-3 bg-white rounded-full animate-float-delayed opacity-40"></div>
+        <div class="absolute top-1/2 left-1/4 w-2 h-2 bg-white rounded-full animate-pulse-slow opacity-50"></div>
+        
+        <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center group cursor-pointer">
+            <div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300" data-count="50">
+              50+
+            </div>
+            <div class="text-blue-100 font-medium text-sm md:text-base">Proyek Selesai</div>
+            <div class="w-12 h-1 bg-white/30 group-hover:bg-white/60 rounded-full mx-auto mt-3 transition-all duration-300"></div>
           </div>
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">99%</div>
-            <div class="text-blue-100 font-medium">Kepuasan Klien</div>
+          <div class="text-center group cursor-pointer">
+            <div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+              99%
+            </div>
+            <div class="text-blue-100 font-medium text-sm md:text-base">Kepuasan Klien</div>
+            <div class="w-12 h-1 bg-white/30 group-hover:bg-white/60 rounded-full mx-auto mt-3 transition-all duration-300"></div>
           </div>
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">5+</div>
-            <div class="text-blue-100 font-medium">Tahun Pengalaman</div>
+          <div class="text-center group cursor-pointer">
+            <div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+              5+
+            </div>
+            <div class="text-blue-100 font-medium text-sm md:text-base">Tahun Pengalaman</div>
+            <div class="w-12 h-1 bg-white/30 group-hover:bg-white/60 rounded-full mx-auto mt-3 transition-all duration-300"></div>
           </div>
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">24/7</div>
-            <div class="text-blue-100 font-medium">Customer Support</div>
+          <div class="text-center group cursor-pointer">
+            <div class="text-4xl md:text-5xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+              24/7
+            </div>
+            <div class="text-blue-100 font-medium text-sm md:text-base">Customer Support</div>
+            <div class="w-12 h-1 bg-white/30 group-hover:bg-white/60 rounded-full mx-auto mt-3 transition-all duration-300"></div>
           </div>
         </div>
       </div>
@@ -171,3 +214,68 @@ const uniqueSellingPoints = [
   }
 ]
 </script>
+
+<style scoped>
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(20px) translateX(-10px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 8s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* Backdrop blur support */
+@supports (backdrop-filter: blur(10px)) {
+  .backdrop-blur-sm {
+    backdrop-filter: blur(10px);
+  }
+}
+</style>

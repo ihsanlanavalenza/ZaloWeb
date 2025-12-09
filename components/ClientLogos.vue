@@ -5,80 +5,127 @@
     
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->
-      <div class="text-center mb-12">
-        <p class="text-gray-600 dark:text-gray-400 text-sm uppercase tracking-wider mb-2">Trusted By</p>
-        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-          Klien yang Mempercayai Kami
+      <div class="text-center mb-16">
+        <p class="text-gray-600 dark:text-gray-400 text-sm uppercase tracking-wider mb-2">Client Portfolio</p>
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+          Dipercaya Berbagai Industri
         </h3>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          Pengalaman nyata melayani 50+ klien dari berbagai sektor bisnis
+        </p>
       </div>
 
-      <!-- Logos Grid - Placeholder untuk logo klien -->
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-        <!-- Logo Placeholder 1 -->
-        <div class="glass-card p-6 rounded-2xl flex items-center justify-center h-24 hover:scale-105 transition-transform group">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">E-Com</span>
+      <!-- Recent Client Projects - Real Case Studies -->
+      <div class="max-w-5xl mx-auto space-y-8 mb-16">
+        <!-- Project Case 1 -->
+        <div class="glass-card p-6 md:p-8 rounded-2xl border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Platform E-Commerce Fashion</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">E-Commerce • Jakarta</p>
             </div>
-            <p class="text-xs text-gray-600">E-commerce</p>
+            <div class="flex items-center gap-3">
+              <span class="px-4 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full">Completed</span>
+              <span class="text-xs text-gray-500 dark:text-gray-500">Q4 2024</span>
+            </div>
+          </div>
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+            Website toko online dengan sistem inventory management, payment gateway, dan dashboard analytics. Menangani 1000+ produk dengan performa optimal.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Vue.js</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Nuxt 3</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Stripe Payment</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">MongoDB</span>
           </div>
         </div>
 
-        <!-- Logo Placeholder 2 -->
-        <div class="glass-card p-6 rounded-2xl flex items-center justify-center h-24 hover:scale-105 transition-transform group">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">F&B</span>
+        <!-- Project Case 2 -->
+        <div class="glass-card p-6 md:p-8 rounded-2xl border-l-4 border-purple-500 hover:shadow-xl transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Sistem Reservasi Restaurant Chain</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Food & Beverage • Bali</p>
             </div>
-            <p class="text-xs text-gray-600">Restaurant</p>
+            <div class="flex items-center gap-3">
+              <span class="px-4 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full">Completed</span>
+              <span class="text-xs text-gray-500 dark:text-gray-500">Q3 2024</span>
+            </div>
+          </div>
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+            Platform booking online untuk 5 cabang restoran. Fitur: real-time table availability, menu digital, order tracking, dan customer loyalty program.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">React</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Node.js</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Real-time Updates</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">WhatsApp API</span>
           </div>
         </div>
 
-        <!-- Logo Placeholder 3 -->
-        <div class="glass-card p-6 rounded-2xl flex items-center justify-center h-24 hover:scale-105 transition-transform group">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">EDU</span>
+        <!-- Project Case 3 -->
+        <div class="glass-card p-6 md:p-8 rounded-2xl border-l-4 border-green-500 hover:shadow-xl transition-shadow">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Learning Management System (LMS)</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">Education • Bandung</p>
             </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400">Education</p>
+            <div class="flex items-center gap-3">
+              <span class="px-4 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full">Completed</span>
+              <span class="text-xs text-gray-500 dark:text-gray-500">Q2 2024</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Logo Placeholder 4 -->
-        <div class="glass-card p-6 rounded-2xl flex items-center justify-center h-24 hover:scale-105 transition-transform group">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">TECH</span>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400">Technology</p>
-          </div>
-        </div>
-
-        <!-- Logo Placeholder 5 -->
-        <div class="glass-card p-6 rounded-2xl flex items-center justify-center h-24 hover:scale-105 transition-transform group">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">MED</span>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400">Healthcare</p>
-          </div>
-        </div>
-
-        <!-- Logo Placeholder 6 -->
-        <div class="glass-card p-6 rounded-2xl flex items-center justify-center h-24 hover:scale-105 transition-transform group">
-          <div class="text-center">
-            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl mx-auto mb-2 flex items-center justify-center">
-              <span class="text-white font-bold text-sm">FIN</span>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-400">Finance</p>
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
+            Platform e-learning untuk sekolah dengan 500+ siswa. Video streaming, quiz online, assignment submission, dan progress tracking untuk guru dan orangtua.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Next.js</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">PostgreSQL</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Video Streaming</span>
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs rounded-lg">Progressive Web App</span>
           </div>
         </div>
       </div>
 
-      <!-- Additional Info -->
-      <div class="mt-12 text-center">
-        <p class="text-gray-600 dark:text-gray-400 text-sm">
-          Melayani berbagai industri di <span class="font-semibold text-gray-900 dark:text-white">Jakarta, Bandung, Surabaya, Bali</span> dan kota-kota lainnya
+      <!-- Statistics Overview -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
+        <div class="text-center p-6 glass-card rounded-xl">
+          <div class="text-4xl font-bold text-gray-900 dark:text-white mb-2">50+</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Projek Selesai</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">2021 - 2024</p>
+        </div>
+        <div class="text-center p-6 glass-card rounded-xl">
+          <div class="text-4xl font-bold text-gray-900 dark:text-white mb-2">45+</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Happy Clients</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">Repeat rate 80%</p>
+        </div>
+        <div class="text-center p-6 glass-card rounded-xl">
+          <div class="text-4xl font-bold text-gray-900 dark:text-white mb-2">6</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Industri</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">Diverse sectors</p>
+        </div>
+        <div class="text-center p-6 glass-card rounded-xl">
+          <div class="text-4xl font-bold text-gray-900 dark:text-white mb-2">24/7</div>
+          <p class="text-sm text-gray-600 dark:text-gray-400">Support</p>
+          <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">After launch</p>
+        </div>
+      </div>
+
+      <!-- Industries Served -->
+      <div class="text-center">
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+          <span class="font-semibold text-gray-900 dark:text-white">Sektor yang kami layani:</span>
+        </p>
+        <div class="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
+          <span class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700">E-Commerce</span>
+          <span class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700">Food & Beverage</span>
+          <span class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700">Education</span>
+          <span class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700">Healthcare</span>
+          <span class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700">Technology</span>
+          <span class="px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-lg border border-gray-200 dark:border-gray-700">Finance</span>
+        </div>
+        <p class="text-sm text-gray-500 dark:text-gray-500 mt-6">
+          Melayani klien di Jakarta, Bandung, Surabaya, Bali dan seluruh Indonesia
         </p>
       </div>
     </div>

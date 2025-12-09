@@ -1,8 +1,8 @@
 <template>
   <section id="portfolio" class="py-20 md:py-28 relative overflow-hidden">
     <!-- Sophisticated Background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/20 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white dark:from-gray-900 dark:via-gray-850 dark:to-gray-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/10 dark:from-blue-500/5 via-transparent to-transparent"></div>
     
     <div class="container mx-auto px-4 relative z-10">
       <!-- Header with Nuxt UI Style -->

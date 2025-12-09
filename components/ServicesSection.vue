@@ -1,13 +1,13 @@
 <template>
-  <section id="services" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+  <section id="services" class="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900">
     <div class="container mx-auto px-4">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">Services</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-4">
+        <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">Services</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
           What We Offer
         </h2>
-        <p class="text-lg text-gray-600">
+        <p class="text-lg text-gray-600 dark:text-gray-300">
           Comprehensive IT services designed to accelerate your digital transformation
         </p>
       </div>
@@ -17,7 +17,7 @@
         <div 
           v-for="(service, index) in services" 
           :key="index"
-          class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group border-2 border-transparent hover:border-blue-200"
+          class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700"
         >
           <div class="flex items-start space-x-6">
             <div class="flex-shrink-0">
@@ -27,17 +27,17 @@
             </div>
             
             <div class="flex-1">
-              <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {{ service.title }}
               </h3>
-              <p class="text-gray-600 leading-relaxed mb-4">
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                 {{ service.description }}
               </p>
               <ul class="space-y-2.5">
                 <li 
                   v-for="(feature, idx) in service.features" 
                   :key="idx"
-                  class="flex items-center text-sm text-gray-700 hover:text-blue-600 transition-colors"
+                  class="flex items-center text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>

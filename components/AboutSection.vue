@@ -1,21 +1,21 @@
 <template>
-  <section id="about" class="py-16 md:py-24 bg-white">
+  <section id="about" class="py-16 md:py-24 bg-white dark:bg-gray-900">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Left Content -->
         <div>
-          <span class="text-blue-600 font-semibold text-sm uppercase tracking-wide">About Us</span>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-3 mb-6">
+          <span class="text-blue-600 dark:text-blue-400 font-semibold text-sm uppercase tracking-wide">About Us</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-6">
             Building Digital Solutions Since 2010
           </h2>
           
-          <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
             We are a team of passionate developers, designers, and strategists dedicated to 
             delivering exceptional IT solutions. Our mission is to help businesses thrive in 
             the digital age through innovative technology and expert guidance.
           </p>
           
-          <p class="text-gray-600 mb-8 leading-relaxed">
+          <p class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
             With over a decade of experience, we've helped hundreds of companies transform 
             their operations, reach new customers, and achieve their business goals through 
             cutting-edge technology solutions.
@@ -23,21 +23,21 @@
 
           <!-- Stats -->
           <div class="grid grid-cols-2 gap-6">
-            <div class="border-l-4 border-blue-600 pl-4">
-              <div class="text-3xl font-bold text-gray-900">13+</div>
-              <div class="text-gray-600">Years Experience</div>
+            <div class="border-l-4 border-blue-600 dark:border-blue-500 pl-4">
+              <div class="text-3xl font-bold text-gray-900 dark:text-white">13+</div>
+              <div class="text-gray-600 dark:text-gray-400">Years Experience</div>
             </div>
-            <div class="border-l-4 border-purple-600 pl-4">
-              <div class="text-3xl font-bold text-gray-900">500+</div>
-              <div class="text-gray-600">Projects Delivered</div>
+            <div class="border-l-4 border-purple-600 dark:border-purple-500 pl-4">
+              <div class="text-3xl font-bold text-gray-900 dark:text-white">500+</div>
+              <div class="text-gray-600 dark:text-gray-400">Projects Delivered</div>
             </div>
-            <div class="border-l-4 border-green-600 pl-4">
-              <div class="text-3xl font-bold text-gray-900">50+</div>
-              <div class="text-gray-600">Team Members</div>
+            <div class="border-l-4 border-green-600 dark:border-green-500 pl-4">
+              <div class="text-3xl font-bold text-gray-900 dark:text-white">50+</div>
+              <div class="text-gray-600 dark:text-gray-400">Team Members</div>
             </div>
-            <div class="border-l-4 border-orange-600 pl-4">
-              <div class="text-3xl font-bold text-gray-900">98%</div>
-              <div class="text-gray-600">Client Satisfaction</div>
+            <div class="border-l-4 border-orange-600 dark:border-orange-500 pl-4">
+              <div class="text-3xl font-bold text-gray-900 dark:text-white">98%</div>
+              <div class="text-gray-600 dark:text-gray-400">Client Satisfaction</div>
             </div>
           </div>
         </div>
