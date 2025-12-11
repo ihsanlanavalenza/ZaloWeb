@@ -1,0 +1,313 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ============================================
+// 1. USERS TABLE - Admin Authentication
+// ============================================
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin") // admin, super_admin
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+// ============================================
+// 2. BANNER TABLE - Banner Slider
+// ============================================
+model Banner {
+  id          String   @id @default(cuid())
+  image       String   // URL or path to banner image
+  alt         String   // Alt text for SEO
+  buttonText  String?  // Optional button text
+  buttonLink  String?  // Optional button link
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("banners")
+  @@index([order])
+  @@index([isActive])
+}
+
+// ============================================
+// 3. LEADS TABLE - Contact Form Submissions
+// ============================================
+model Lead {
+  id          String    @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  company     String?
+  message     String
+  source      String?   // web, landing, referral
+  status      String    @default("new") // new, contacted, qualified, converted, closed
+  priority    String    @default("medium") // low, medium, high
+  assignedTo  String?
+  notes       String?
+  ipAddress   String?
+  userAgent   String?
+  utm_source  String?
+  utm_medium  String?
+  utm_campaign String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("leads")
+  @@index([status])
+  @@index([createdAt])
+}
+
+// ============================================
+// 3. TESTIMONIALS TABLE
+// ============================================
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  position    String
+  company     String
+  avatar      String?
+  rating      Int      @default(5) // 1-5
+  content     String
+  isFeatured  Boolean  @default(false)
+  isPublished Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("testimonials")
+  @@index([isPublished, isFeatured])
+}
+
+// ============================================
+// 4. FAQ CATEGORIES & FAQS
+// ============================================
+model FaqCategory {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  faqs        Faq[]
+
+  @@map("faq_categories")
+}
+
+model Faq {
+  id          String      @id @default(cuid())
+  categoryId  String
+  question    String
+  answer      String
+  order       Int         @default(0)
+  isPublished Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  category    FaqCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("faqs")
+  @@index([categoryId])
+  @@index([isPublished])
+}
+
+// ============================================
+// 5. PORTFOLIO TABLE - Projects
+// ============================================
+model Portfolio {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  category    String   // web, mobile, design, etc
+  tags        Json?    // array of tags
+  client      String?
+  year        Int?
+  thumbnail   String
+  images      Json?    // array of image URLs
+  liveUrl     String?
+  githubUrl   String?
+  features    Json?    // key features
+  technologies Json?   // tech stack
+  isFeatured  Boolean  @default(false)
+  isPublished Boolean  @default(true)
+  order       Int      @default(0)
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("portfolio")
+  @@index([category])
+  @@index([isPublished, isFeatured])
+}
+
+// ============================================
+// 6. PRICING PLANS & FEATURES
+// ============================================
+model PricingPlan {
+  id          String         @id @default(cuid())
+  name        String
+  slug        String         @unique
+  description String?
+  price       Float
+  currency    String         @default("IDR")
+  billingType String         @default("one-time") // one-time, monthly, yearly
+  isPopular   Boolean        @default(false)
+  isActive    Boolean        @default(true)
+  order       Int            @default(0)
+  buttonText  String         @default("Get Started")
+  buttonLink  String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  
+  features    PlanFeature[]
+
+  @@map("pricing_plans")
+}
+
+model PlanFeature {
+  id          String      @id @default(cuid())
+  planId      String
+  feature     String
+  isIncluded  Boolean     @default(true)
+  order       Int         @default(0)
+  createdAt   DateTime    @default(now())
+  
+  plan        PricingPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+
+  @@map("plan_features")
+  @@index([planId])
+}
+
+// ============================================
+// 7. CLIENTS TABLE - Client Logos
+// ============================================
+model Client {
+  id          String   @id @default(cuid())
+  name        String
+  logo        String
+  website     String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("clients")
+  @@index([isPublished])
+}
+
+// ============================================
+// 8. CASE STUDIES TABLE
+// ============================================
+model CaseStudy {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  client      String
+  industry    String
+  challenge   String
+  solution    String
+  results     String
+  thumbnail   String
+  images      Json?    // array of image URLs
+  metrics     Json?    // { "conversion": "+150%", "traffic": "+200%" }
+  testimonial String?
+  technologies Json?
+  duration    String?  // "3 months"
+  teamSize    Int?
+  isPublished Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("case_studies")
+  @@index([isPublished, isFeatured])
+}
+
+// ============================================
+// 9. ANALYTICS TABLE - Visitor Tracking
+// ============================================
+model Analytics {
+  id          String   @id @default(cuid())
+  page        String
+  referrer    String?
+  userAgent   String?
+  ipAddress   String?
+  country     String?
+  city        String?
+  device      String?  // mobile, desktop, tablet
+  browser     String?
+  os          String?
+  sessionId   String?
+  duration    Int?     // seconds on page
+  utm_source  String?
+  utm_medium  String?
+  utm_campaign String?
+  createdAt   DateTime @default(now())
+
+  @@map("analytics")
+  @@index([page])
+  @@index([createdAt])
+  @@index([sessionId])
+}
+
+// ============================================
+// 10. SETTINGS TABLE - Site Configuration
+// ============================================
+model Setting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  type        String   @default("string") // string, number, boolean, json
+  category    String   @default("general") // general, seo, social, contact, smtp
+  description String?
+  isPublic    Boolean  @default(false) // can be exposed to frontend
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("settings")
+  @@index([category])
+}
+
+// ============================================
+// 11. MEDIA TABLE - Upload Management
+// ============================================
+model Media {
+  id          String   @id @default(cuid())
+  filename    String
+  originalName String
+  mimeType    String
+  size        Int      // bytes
+  url         String
+  path        String
+  folder      String   @default("uploads")
+  alt         String?
+  title       String?
+  description String?
+  uploadedBy  String?
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("media")
+  @@index([folder])
+  @@index([createdAt])
+}

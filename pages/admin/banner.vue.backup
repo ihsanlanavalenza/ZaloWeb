@@ -1,0 +1,380 @@
+<template>
+  <div class="min-h-screen bg-gradient-to-br from-blue-50/50 via-purple-50/20 to-blue-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+    <!-- Header -->
+    <div class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Banner Management</h1>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Kelola banner slider website Anda</p>
+        </div>
+        <UButton
+          label="Tambah Banner"
+          icon="i-heroicons-plus"
+          color="primary"
+          @click="openCreateModal"
+        />
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="p-6">
+      <!-- Empty State -->
+      <div v-if="!loading && banners.length === 0" class="flex flex-col items-center justify-center py-20">
+        <div class="w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-full flex items-center justify-center mb-6">
+          <UIcon name="i-heroicons-photo" class="w-16 h-16 text-blue-600 dark:text-blue-400" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Belum Ada Banner</h3>
+        <p class="text-gray-500 dark:text-gray-400 mb-6 text-center max-w-md">
+          Mulai tambahkan banner untuk slider website Anda. Banner akan ditampilkan secara otomatis di homepage.
+        </p>
+        <UButton
+          label="Tambah Banner Pertama"
+          icon="i-heroicons-plus"
+          size="lg"
+          @click="openCreateModal"
+        />
+      </div>
+
+      <!-- Loading State -->
+      <div v-else-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-for="i in 3" :key="i" class="animate-pulse">
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-4">
+            <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-4"></div>
+            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
+            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banners Grid -->
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          v-for="banner in banners"
+          :key="banner.id"
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700"
+        >
+          <!-- Banner Image -->
+          <div class="relative aspect-video bg-gray-100 dark:bg-gray-900">
+            <img
+              :src="banner.image"
+              :alt="banner.alt"
+              class="w-full h-full object-cover"
+              @error="handleImageError"
+            />
+            <div class="absolute top-3 right-3 flex gap-2">
+              <UBadge
+                :label="banner.isActive ? 'Active' : 'Inactive'"
+                :color="banner.isActive ? 'green' : 'gray'"
+                size="sm"
+              />
+              <UBadge
+                :label="`#${banner.order}`"
+                color="blue"
+                size="sm"
+              />
+            </div>
+          </div>
+
+          <!-- Banner Info -->
+          <div class="p-4">
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-1">
+              {{ banner.alt }}
+            </h3>
+            <div v-if="banner.buttonText" class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              <span class="inline-flex items-center gap-1">
+                <UIcon name="i-heroicons-cursor-arrow-rays" class="w-4 h-4" />
+                {{ banner.buttonText }}
+              </span>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-2">
+              <UButton
+                icon="i-heroicons-pencil"
+                color="gray"
+                size="sm"
+                class="flex-1"
+                @click="openEditModal(banner)"
+              >
+                Edit
+              </UButton>
+              <UButton
+                icon="i-heroicons-trash"
+                color="red"
+                variant="soft"
+                size="sm"
+                @click="confirmDelete(banner)"
+              >
+                Hapus
+              </UButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create/Edit Modal -->
+    <UModal v-model="showModal" :title="isEditMode ? 'Edit Banner' : 'Tambah Banner'" size="lg">
+      <UCard>
+        <form @submit.prevent="handleSubmit" class="space-y-4">
+          <UFormGroup label="URL Gambar" required>
+            <UInput
+              v-model="form.image"
+              placeholder="/images/banner/1.png"
+              icon="i-heroicons-photo"
+            />
+          </UFormGroup>
+
+          <UFormGroup label="Alt Text (SEO)" required>
+            <UInput
+              v-model="form.alt"
+              placeholder="Banner description for SEO"
+            />
+          </UFormGroup>
+
+          <UFormGroup label="Button Text (Optional)">
+            <UInput
+              v-model="form.buttonText"
+              placeholder="Lihat Selengkapnya"
+            />
+          </UFormGroup>
+
+          <UFormGroup label="Button Link (Optional)">
+            <UInput
+              v-model="form.buttonLink"
+              placeholder="#portfolio"
+            />
+          </UFormGroup>
+
+          <div class="grid grid-cols-2 gap-4">
+            <UFormGroup label="Urutan">
+              <UInput
+                v-model.number="form.order"
+                type="number"
+                min="0"
+              />
+            </UFormGroup>
+
+            <UFormGroup label="Status">
+              <UToggle
+                v-model="form.isActive"
+                :label="form.isActive ? 'Active' : 'Inactive'"
+              />
+            </UFormGroup>
+          </div>
+
+          <div class="flex justify-end gap-3 pt-4">
+            <UButton
+              label="Batal"
+              color="gray"
+              variant="ghost"
+              @click="closeModal"
+            />
+            <UButton
+              :label="isEditMode ? 'Update' : 'Simpan'"
+              type="submit"
+              :loading="submitting"
+            />
+          </div>
+        </form>
+      </UCard>
+    </UModal>
+
+    <!-- Delete Confirmation Modal -->
+    <UModal v-model="showDeleteModal" title="Konfirmasi Hapus">
+      <UCard>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
+          Apakah Anda yakin ingin menghapus banner ini? Tindakan ini tidak dapat dibatalkan.
+        </p>
+        <div class="flex justify-end gap-3">
+          <UButton
+            label="Batal"
+            color="gray"
+            variant="ghost"
+            @click="showDeleteModal = false"
+          />
+          <UButton
+            label="Hapus"
+            color="red"
+            :loading="deleting"
+            @click="handleDelete"
+          />
+        </div>
+      </UCard>
+    </UModal>
+  </div>
+</template>
+
+<script setup>
+definePageMeta({
+  layout: 'admin',
+});
+
+const toast = useToast();
+
+// State
+const banners = ref([]);
+const loading = ref(true);
+const submitting = ref(false);
+const deleting = ref(false);
+const showModal = ref(false);
+const showDeleteModal = ref(false);
+const isEditMode = ref(false);
+const selectedBanner = ref(null);
+
+// Form
+const form = ref({
+  image: '',
+  alt: '',
+  buttonText: '',
+  buttonLink: '',
+  order: 0,
+  isActive: true,
+});
+
+// Fetch banners
+const fetchBanners = async () => {
+  try {
+    loading.value = true;
+    const { data } = await $fetch('/api/banner/all');
+    banners.value = data.success ? data.data : [];
+  } catch (error) {
+    console.error('Error fetching banners:', error);
+    toast.add({
+      title: 'Error',
+      description: 'Gagal memuat data banner',
+      color: 'red',
+    });
+    banners.value = [];
+  } finally {
+    loading.value = false;
+  }
+};
+
+// Open create modal
+const openCreateModal = () => {
+  isEditMode.value = false;
+  form.value = {
+    image: '',
+    alt: '',
+    buttonText: '',
+    buttonLink: '',
+    order: banners.value.length,
+    isActive: true,
+  };
+  showModal.value = true;
+};
+
+// Open edit modal
+const openEditModal = (banner) => {
+  isEditMode.value = true;
+  selectedBanner.value = banner;
+  form.value = {
+    image: banner.image,
+    alt: banner.alt,
+    buttonText: banner.buttonText || '',
+    buttonLink: banner.buttonLink || '',
+    order: banner.order,
+    isActive: banner.isActive,
+  };
+  showModal.value = true;
+};
+
+// Close modal
+const closeModal = () => {
+  showModal.value = false;
+  selectedBanner.value = null;
+};
+
+// Handle submit
+const handleSubmit = async () => {
+  if (!form.value.image || !form.value.alt) {
+    toast.add({
+      title: 'Validasi Error',
+      description: 'URL Gambar dan Alt Text wajib diisi',
+      color: 'red',
+    });
+    return;
+  }
+
+  try {
+    submitting.value = true;
+    
+    if (isEditMode.value) {
+      await $fetch(`/api/banner/${selectedBanner.value.id}`, {
+        method: 'PUT',
+        body: form.value,
+      });
+      toast.add({
+        title: 'Berhasil',
+        description: 'Banner berhasil diupdate',
+        color: 'green',
+      });
+    } else {
+      await $fetch('/api/banner/create', {
+        method: 'POST',
+        body: form.value,
+      });
+      toast.add({
+        title: 'Berhasil',
+        description: 'Banner berhasil ditambahkan',
+        color: 'green',
+      });
+    }
+
+    closeModal();
+    await fetchBanners();
+  } catch (error) {
+    console.error('Error saving banner:', error);
+    toast.add({
+      title: 'Error',
+      description: error.data?.message || 'Gagal menyimpan banner',
+      color: 'red',
+    });
+  } finally {
+    submitting.value = false;
+  }
+};
+
+// Confirm delete
+const confirmDelete = (banner) => {
+  selectedBanner.value = banner;
+  showDeleteModal.value = true;
+};
+
+// Handle delete
+const handleDelete = async () => {
+  try {
+    deleting.value = true;
+    await $fetch(`/api/banner/${selectedBanner.value.id}`, {
+      method: 'DELETE',
+    });
+    toast.add({
+      title: 'Berhasil',
+      description: 'Banner berhasil dihapus',
+      color: 'green',
+    });
+    showDeleteModal.value = false;
+    await fetchBanners();
+  } catch (error) {
+    console.error('Error deleting banner:', error);
+    toast.add({
+      title: 'Error',
+      description: 'Gagal menghapus banner',
+      color: 'red',
+    });
+  } finally {
+    deleting.value = false;
+  }
+};
+
+// Handle image error
+const handleImageError = (e) => {
+  e.target.src = 'https://placehold.co/800x400/EEE/999?text=Image+Not+Found';
+};
+
+// Fetch on mount
+onMounted(() => {
+  fetchBanners();
+});
+</script>

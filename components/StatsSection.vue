@@ -212,7 +212,7 @@
       </div>
 
       <!-- CTA Section -->
-      <div class="mt-16 text-center">
+      <!-- <div class="mt-16 text-center">
         <a 
           :href="cta.link" 
           class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -223,7 +223,7 @@
           </svg>
           {{ cta.text }}
         </a>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>

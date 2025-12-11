@@ -168,40 +168,74 @@ const formData = ref({
   name: '',
   email: '',
   phone: '',
-  package: '',
+  company: '',
   message: ''
 })
 
-const submitForm = () => {
-  // Create WhatsApp message
-  const message = `
-*Konsultasi Website Baru*
+const isSubmitting = ref(false)
+const submitSuccess = ref(false)
+const submitError = ref('')
+
+const submitForm = async () => {
+  isSubmitting.value = true
+  submitError.value = ''
+  submitSuccess.value = false
+
+  try {
+    // Submit to API
+    const response = await $fetch('/api/contact/submit', {
+      method: 'POST',
+      body: {
+        name: formData.value.name,
+        email: formData.value.email,
+        phone: formData.value.phone,
+        company: formData.value.company,
+        message: formData.value.message,
+        source: 'website'
+      }
+    })
+
+    if (response.success) {
+      submitSuccess.value = true
+      
+      // Optional: Also send to WhatsApp
+      const message = `
+*Lead Baru dari Website*
 
 Nama: ${formData.value.name}
 Email: ${formData.value.email}
 No. HP: ${formData.value.phone}
-Paket: ${formData.value.package || 'Belum dipilih'}
+Perusahaan: ${formData.value.company || '-'}
 
 Pesan:
 ${formData.value.message}
-  `.trim()
+      `.trim()
 
-  // Encode message for URL
-  const encodedMessage = encodeURIComponent(message)
-  
-  // WhatsApp URL (ganti dengan nomor WhatsApp bisnis Anda)
-  const whatsappURL = `https://wa.me/6281234567890?text=${encodedMessage}`
-  
-  // Open WhatsApp
-  window.open(whatsappURL, '_blank')
-  
-  // Reset form
-  formData.value = {
-    name: '',
-    email: '',
-    phone: '',
-    package: '',
-    message: ''
+      const encodedMessage = encodeURIComponent(message)
+      const whatsappURL = `https://wa.me/6281234567890?text=${encodedMessage}`
+      
+      // Open WhatsApp in new tab (optional)
+      // window.open(whatsappURL, '_blank')
+
+      // Reset form
+      formData.value = {
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: ''
+      }
+
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        submitSuccess.value = false
+      }, 5000)
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error)
+    submitError.value = error.data?.message || 'Terjadi kesalahan. Silakan coba lagi.'
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>

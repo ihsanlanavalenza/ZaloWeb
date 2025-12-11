@@ -1,7 +1,15 @@
 <template>
   <section class="relative overflow-hidden bg-gray-900">
+    <!-- Loading State -->
+    <div v-if="loading" class="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-800">
+      <div class="text-center">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mb-4"></div>
+        <p class="text-white text-sm">Loading banners...</p>
+      </div>
+    </div>
+
     <!-- Banner Slider -->
-    <div class="relative h-[400px] md:h-[500px] lg:h-[600px]">
+    <div v-else-if="banners.length > 0" class="relative h-[400px] md:h-[500px] lg:h-[600px]">
       <TransitionGroup name="slide">
         <div
           v-for="(banner, index) in banners"
@@ -14,13 +22,14 @@
             :src="banner.image"
             :alt="banner.alt"
             class="w-full h-full object-cover"
+            @error="handleImageError"
           />
           
           <!-- Overlay Gradient -->
           <!-- <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div> -->
           
           <!-- Banner Content - Button Only -->
-          <!-- <div class="absolute bottom-12 left-8 md:left-16 z-10">
+          <!-- <div v-if="banner.buttonText && banner.buttonLink" class="absolute bottom-12 left-8 md:left-16 z-10">
             <a
               :href="banner.buttonLink"
               class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-xl"
@@ -35,6 +44,7 @@
       <button
         @click="prevSlide"
         class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        aria-label="Previous slide"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -44,6 +54,7 @@
       <button
         @click="nextSlide"
         class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        aria-label="Next slide"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -66,60 +77,91 @@
         ></button>
       </div>
     </div>
+
+    <!-- Empty State -->
+    <div v-else class="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+      <div class="text-center text-white px-4">
+        <svg class="w-20 h-20 mx-auto mb-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <h3 class="text-xl font-semibold mb-2">No Banners Available</h3>
+        <p class="text-gray-400">Please add banners from admin panel</p>
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-// Banner data - menggunakan gambar dari public/images/banner/
-const banners = ref([
+// State
+const banners = ref([])
+const currentSlide = ref(0)
+const loading = ref(true)
+let autoSlideInterval = null
+
+// Fallback banners (menggunakan images yang sudah ada)
+const fallbackBanners = [
   {
-    id: 1,
+    id: 'fallback-1',
     image: '/images/banner/1.png',
     alt: 'Jasa Layanan Website Profesional & Terjangkau',
-    title: 'Jasa Layanan Website',
-    description: 'Tingkatkan Pembuatan Website Anda dengan Berbagai Fitur Lengkap & Terintegrasi dengan design tanpa batas, SEO friendly dan harga terjangkau',
     buttonText: 'Konsultasi Gratis',
     buttonLink: '#contact'
   },
   {
-    id: 2,
+    id: 'fallback-2',
     image: '/images/banner/2.png',
     alt: 'Partner IT Terpercaya untuk Setiap Kebutuhan Bisnis',
-    title: 'Partner IT Terpercaya',
-    description: 'Desain menarik, fitur lengkap, dan mudah dikelola. Cocok untuk UMKM hingga Company Profile.',
     buttonText: 'Konsultasi Gratis',
     buttonLink: '#contact'
   },
   {
-    id: 3,
+    id: 'fallback-3',
     image: '/images/banner/3.png',
     alt: 'Exclusive Phone - Launching Soon',
-    title: 'Exclusive Phone',
-    description: 'Get 20% OFF for the first 3 months if you sign up today!',
     buttonText: 'Learn More',
     buttonLink: '#services'
   },
   {
-    id: 4,
+    id: 'fallback-4',
     image: '/images/banner/4.png',
     alt: 'IT Outsourcing Solutions Package',
-    title: 'IT Outsourcing Solutions',
-    description: 'Get 20% OFF for the first 3 months if you sign up today! Cybersecurity Management, System Monitoring & Maintenance, Customized IT Solutions',
     buttonText: 'Learn More',
     buttonLink: '#services'
   }
-])
+]
 
-const currentSlide = ref(0)
-let autoSlideInterval = null
+// Fetch banners from API
+const fetchBanners = async () => {
+  try {
+    loading.value = true
+    const response = await $fetch('/api/banner')
+    
+    if (response.success && response.data && response.data.length > 0) {
+      banners.value = response.data
+      console.log('✅ Banners loaded from API:', banners.value.length)
+    } else {
+      console.log('⚠️ No banners from API, using fallback')
+      banners.value = fallbackBanners
+    }
+  } catch (error) {
+    console.error('❌ Error fetching banners:', error)
+    console.log('⚠️ Using fallback banners')
+    banners.value = fallbackBanners
+  } finally {
+    loading.value = false
+  }
+}
 
+// Slider functions
 const nextSlide = () => {
+  if (banners.value.length === 0) return
   currentSlide.value = (currentSlide.value + 1) % banners.value.length
 }
 
 const prevSlide = () => {
+  if (banners.value.length === 0) return
   currentSlide.value = currentSlide.value === 0 
     ? banners.value.length - 1 
     : currentSlide.value - 1
@@ -131,6 +173,8 @@ const goToSlide = (index) => {
 
 // Auto slide every 5 seconds
 const startAutoSlide = () => {
+  if (banners.value.length <= 1) return
+  
   autoSlideInterval = setInterval(() => {
     nextSlide()
   }, 5000)
@@ -139,17 +183,29 @@ const startAutoSlide = () => {
 const stopAutoSlide = () => {
   if (autoSlideInterval) {
     clearInterval(autoSlideInterval)
+    autoSlideInterval = null
   }
 }
 
-onMounted(() => {
-  startAutoSlide()
+// Handle image error
+const handleImageError = (e) => {
+  console.error('Image failed to load:', e.target.src)
+  e.target.src = 'https://placehold.co/1920x600/667eea/ffffff?text=Banner+Not+Found'
+}
+
+// Keyboard navigation
+const handleKeydown = (e) => {
+  if (e.key === 'ArrowLeft') prevSlide()
+  if (e.key === 'ArrowRight') nextSlide()
+}
+
+onMounted(async () => {
+  await fetchBanners()
   
-  // Keyboard navigation
-  const handleKeydown = (e) => {
-    if (e.key === 'ArrowLeft') prevSlide()
-    if (e.key === 'ArrowRight') nextSlide()
+  if (banners.value.length > 1) {
+    startAutoSlide()
   }
+  
   window.addEventListener('keydown', handleKeydown)
 })
 
